@@ -19,7 +19,7 @@ pipeline {
             stage ('Building') {
                 steps {
                     echo 'Starting Build Job'
-                    build job: 'vetlog'
+                    echo 'Call remote build job'
                     echo 'Done!'
                 }
             }
