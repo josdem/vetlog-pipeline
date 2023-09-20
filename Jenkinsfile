@@ -12,14 +12,28 @@ pipeline {
             stage('Removing') {
                 steps {
                     echo 'Removing Vetlog'
-                    sh 'ssh josdem@jmailer.josdem.io "/home/josdem/deploys/remove-vetlog.sh"'
+                    sh 'ssh josdem@vetlog.org "/home/josdem/deploys/remove-vetlog.sh"'
                     echo 'Done!'
                 }
             }
             stage ('Building') {
                 steps {
                     echo 'Starting Build Job'
-                    echo 'Call remote build job'
+                    build job: 'vetlog'
+                    echo 'Done!'
+                }
+            }
+            stage ('Moving') {
+                steps {
+                    echo 'Moving Vetlog'
+                    sh 'ssh josdem@vetlog.org "/home/josdem/deploys/move-vetlog.sh"'
+                    echo 'Done!'
+                }
+            }
+            stage ('Moving') {
+                steps {
+                    echo 'Start Vetlog'
+                    sh 'ssh josdem@vetlog.org "/home/josdem/deploys/start-vetlog.sh"'
                     echo 'Done!'
                 }
             }
