@@ -4,7 +4,7 @@ pipeline {
         stages {
             stage('Stopping') {
                 steps {
-                    sh 'Stopping Vetlog'
+                    echo 'Stopping Vetlog'
                     sh 'ssh josdem@vetlog.org "/home/josdem/deploys/stop-vetlog.sh"'
                     echo 'Done!'
                 }
