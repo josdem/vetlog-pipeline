@@ -30,7 +30,7 @@ pipeline {
                     echo 'Done!'
                 }
             }
-            stage ('Moving') {
+            stage ('Starting') {
                 steps {
                     echo 'Start Vetlog'
                     sh 'ssh josdem@vetlog.org "/home/josdem/deploys/start-vetlog.sh"'
