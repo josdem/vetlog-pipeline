@@ -43,7 +43,7 @@ pipeline {
                     script {
                         try {
                             def url = "https://api.github.com/repos/josdem/playwright-vetlog/dispatches"
-                            def response = sh(script: 'curl -X POST -H "Accept: application/vnd.github.v3+json" -H "authorization: Bearer ${token}" --url "${url}"', returnStdout: true).trim()
+                            def response = sh(script: 'curl "${url}" -X POST -H "Accept: application/vnd.github.v3+json" -H "authorization: Bearer ${token}"', returnStdout: true).trim()
                             echo "Response: ${response}"
                         } catch (Exception e) {
                             echo "Failed to invoke GitHub Actions Workflow: ${e.getMessage()}"
