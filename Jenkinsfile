@@ -37,5 +37,21 @@ pipeline {
                     echo 'Done!'
                 }
             }
+            stage ('Testing') {
+                steps {
+                    echo 'Invoke GitHub Actions Workflow'
+                    script {
+                        try {
+                            sh """curl -X POST https://api.github.com/repos/josdem/playwright-vetlog/dispatches \
+                                 --header "Accept: application/vnd.github.v3+json" \
+                                 --header "Authorization: Bearer ${token}" \
+                                 --data '{"event_type": "Called from Jenkins"}'"""
+                        } catch (Exception e) {
+                            echo "Failed to invoke GitHub Actions Workflow: ${e.getMessage()}"
+                        }
+                    }
+                    echo 'Done!'
+                }
+            }
         }
 }
