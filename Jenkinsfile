@@ -42,8 +42,7 @@ pipeline {
                     echo 'Invoke GitHub Actions Workflow'
                     script {
                         try {
-                            def url = "https://api.github.com/repos/josdem/playwright-vetlog/dispatches"
-                            def response = sh(script: 'curl "${url}" -X POST -H "Accept: application/vnd.github.v3+json" -H "authorization: Bearer ${token}"', returnStdout: true).trim()
+                            def response = sh(script: 'curl https://api.github.com/repos/josdem/playwright-vetlog/dispatches -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${token}" -d {"event_type": "Called from Jenkins"}', returnStdout: true).trim()
                             echo "Response: ${response}"
                         } catch (Exception e) {
                             echo "Failed to invoke GitHub Actions Workflow: ${e.getMessage()}"
