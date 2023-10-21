@@ -20,14 +20,12 @@ pipeline {
                 steps {
                     echo 'Starting Build Job'
                     build job: 'vetlog'
-                    sh 'sleep 10'
                     echo 'Done!'
                 }
             }
             stage ('Moving') {
                 steps {
                     echo 'Moving Vetlog'
-                    sh 'sleep 10'
                     sh 'ssh josdem@vetlog.org "/home/josdem/deploys/move-vetlog.sh"'
                     echo 'Done!'
                 }
